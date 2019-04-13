@@ -33,3 +33,8 @@ void Ship::draw(RenderWindow &win)
 {
 	win.draw(ship);
 }
+
+Sprite Ship::getSprite() const
+{
+	return ship;
+}

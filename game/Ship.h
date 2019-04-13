@@ -12,4 +12,5 @@ public:
 	Ship(Vector2f pos);
 	void move();
 	void draw(RenderWindow &win);
+	Sprite getSprite() const;
 };
