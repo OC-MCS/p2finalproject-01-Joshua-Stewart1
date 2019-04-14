@@ -28,7 +28,7 @@ bool Enemy::checkHit(MissileMgr &missileList)
 	{
 		if (alien.getGlobalBounds().intersects(it->getSprite().getGlobalBounds()))
 		{
-			ptr->erase(it);
+			it = ptr->erase(it);
 			isHit = true;
 		}
 		else

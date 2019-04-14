@@ -33,7 +33,7 @@ void EnemyMgr::checkHits(MissileMgr &missileList)
 	{
 		if (it->checkHit(missileList))
 		{
-			enemyList.erase(it);
+			it = enemyList.erase(it);
 		}
 		else
 		{

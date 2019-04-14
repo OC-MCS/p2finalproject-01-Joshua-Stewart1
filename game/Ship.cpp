@@ -21,7 +21,7 @@ void Ship::move()
 	{
 		ship.move(-DISTANCE, 0);
 	}
-	else if (Keyboard::isKeyPressed(Keyboard::Right) && ship.getPosition().x < 780)
+	else if (Keyboard::isKeyPressed(Keyboard::Right) && ship.getPosition().x < 768)
 	{
 		ship.move(DISTANCE, 0);
 	}
@@ -50,5 +50,5 @@ bool Ship::checkHit(BombMgr &bombList)
 
 void Ship::shootMissile(MissileMgr &missileList)
 {
-	missileList.addProjectile(ship.getPosition());
+	missileList.addProjectile(Vector2f(ship.getPosition().x + 12, ship.getPosition().y));
 }

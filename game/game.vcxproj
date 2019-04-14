@@ -149,6 +149,7 @@
     <ClCompile Include="EnemyMgr.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="MenuUI.cpp" />
     <ClCompile Include="MissileMgr.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="BombMgr.cpp" />

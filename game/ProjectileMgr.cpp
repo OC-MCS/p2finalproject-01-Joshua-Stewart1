@@ -41,7 +41,7 @@ void ProjectileMgr::clearProjectiles()
 	{
 		if (outOfBounds(*it))
 		{
-			projectileList.erase(it);
+			it = projectileList.erase(it);
 		}
 		else
 		{
