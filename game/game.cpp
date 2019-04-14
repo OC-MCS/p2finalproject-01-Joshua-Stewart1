@@ -2,6 +2,7 @@
 using namespace std;
 #include <SFML/Graphics.hpp>
 using namespace sf; 
+#include "Ship.h"
 
 //============================================================
 // Joshua Stewart
@@ -24,6 +25,12 @@ int main()
 		cout << "Unable to load stars texture!" << endl;
 		exit(EXIT_FAILURE);
 	}
+	Texture shipTexture;
+	if (!shipTexture.loadFromFile("ship.png"))
+	{
+		cout << "Unable to load ship texture!" << endl;
+		exit(EXIT_FAILURE);
+	}
 
 	// A sprite is a thing we can draw and manipulate on the screen.
 	// We have to give it a "texture" to specify what it looks like
@@ -35,8 +42,9 @@ int main()
 
 	// initial position of the ship will be approx middle of screen
 	float shipX = window.getSize().x / 2.0f;
-	float shipY = window.getSize().y / 2.0f;
+	float shipY = window.getSize().y - 50.0f;
 
+	Ship ship (Vector2f(shipX,shipY), shipTexture);
 
 	while (window.isOpen())
 	{
@@ -58,27 +66,15 @@ int main()
 				
 			}
 		}
-
-		//===========================================================
-		// Everything from here to the end of the loop is where you put your
-		// code to produce ONE frame of the animation. The next iteration of the loop will
-		// render the next frame, and so on. All this happens ~ 60 times/second.
-		//===========================================================
-
-		// draw background first, so everything that's drawn later 
-		// will appear on top of background
+		
 		window.draw(background);
 
-		// end the current frame; this makes everything that we have 
-		// already "drawn" actually show up on the screen
+		ship.move();
+		ship.draw(window);
+
 		window.display();
 
-		// At this point the frame we have built is now visible on screen.
-		// Now control will go back to the top of the animation loop
-		// to build the next frame. Since we begin by drawing the
-		// background, each frame is rebuilt from scratch.
-
-	} // end body of animation loop
+	}
 
 	return 0;
 }

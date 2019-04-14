@@ -2,31 +2,10 @@
 using namespace std;
 #include "Ship.h"
 
-Ship::Ship(Vector2f pos)
+Ship::Ship(Vector2f pos, Texture &img)
 {
-	Texture shipTexture;
-	if (!shipTexture.loadFromFile("ship.png"))
-	{
-		cout << "Unable to load ship texture!" << endl;
-		exit(EXIT_FAILURE);
-	}
-
-	position = pos;
-	ship.setTexture(shipTexture);
-}
-
-void Ship::move()
-{
-	const float DISTANCE = 5.0;
-
-	if (Keyboard::isKeyPressed(Keyboard::Left))
-	{
-		ship.move(-DISTANCE, 0);
-	}
-	else if (Keyboard::isKeyPressed(Keyboard::Right))
-	{
-		ship.move(DISTANCE, 0);
-	}
+	ship.setTexture(img);
+	ship.setPosition(pos);
 }
 
 void Ship::draw(RenderWindow &win)
@@ -34,7 +13,42 @@ void Ship::draw(RenderWindow &win)
 	win.draw(ship);
 }
 
-Sprite Ship::getSprite() const
+void Ship::move()
 {
-	return ship;
+	const float DISTANCE = 5.0;
+
+	if (Keyboard::isKeyPressed(Keyboard::Left) && ship.getPosition().x > 0)
+	{
+		ship.move(-DISTANCE, 0);
+	}
+	else if (Keyboard::isKeyPressed(Keyboard::Right) && ship.getPosition().x < 780)
+	{
+		ship.move(DISTANCE, 0);
+	}
+}
+
+bool Ship::checkHit(BombMgr &bombList)
+{
+	list<Projectile>::iterator it;
+	list<Projectile> * ptr = bombList.getList();
+	bool isHit = false;
+
+	for (it = ptr->begin(); it != ptr->end() && !isHit; )
+	{
+		if (ship.getGlobalBounds().intersects(it->getSprite().getGlobalBounds()))
+		{
+			ptr->erase(it);
+			isHit = true;
+		}
+		else
+		{
+			it++;
+		}
+	}
+	return isHit;
+}
+
+void Ship::shootMissile(MissileMgr &missileList)
+{
+	missileList.addProjectile(ship.getPosition());
 }

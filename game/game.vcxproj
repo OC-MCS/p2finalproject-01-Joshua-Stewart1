@@ -146,10 +146,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="EnemyMgr.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="MissileMgr.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="BombMgr.cpp" />
+    <ClCompile Include="ProjectileMgr.cpp" />
     <ClCompile Include="Ship.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +166,7 @@
     <ClInclude Include="MissileMgr.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="BombMgr.h" />
+    <ClInclude Include="ProjectileMgr.h" />
     <ClInclude Include="Ship.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

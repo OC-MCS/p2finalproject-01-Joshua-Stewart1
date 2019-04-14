@@ -2,17 +2,12 @@
 
 #include <list>
 using namespace std;
-#include "Projectile.h"
+#include "ProjectileMgr.h"
 
-class MissileMgr
+class MissileMgr : public ProjectileMgr
 {
 private:
-	list<Projectile> missileList;	//The list of all projectiles currently on-screen
-	Texture missileTexture;			//The texture to be used by all of the projectiles
+	bool outOfBounds(Projectile obj);
 public:
-	MissileMgr();
-	void draw(RenderWindow &win);
-	void moveMissiles();
-	void addMissile(Vector2f pos);
-	void deleteMissile(int index);
+	MissileMgr(Texture &img);
 };

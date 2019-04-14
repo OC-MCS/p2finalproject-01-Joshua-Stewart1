@@ -4,46 +4,18 @@ using namespace std;
 
 const float DROP_SPEED = 5;
 
-BombMgr::BombMgr()
+BombMgr::BombMgr(Texture &img) : ProjectileMgr(img)
 {
+	setVelocity(DROP_SPEED);
+}
+
+bool BombMgr::outOfBounds(Projectile obj)
+{
+	bool outOfBounds = false;
 	
-	if (!bombTexture.loadFromFile("bomb.jpg"))
+	if(obj.getPosition().y > 600)
 	{
-		cout << "Unable to load bomb texture!" << endl;
-		exit(EXIT_FAILURE);
+		outOfBounds = true;
 	}
-}
-
-void BombMgr::draw(RenderWindow &win)
-{
-	list<Projectile>::iterator it;
-
-	for (it = bombList.begin(); it != bombList.end(); it++)
-	{
-		it->draw(win);
-	}
-}
-
-void BombMgr::moveBombs()
-{
-	list<Projectile>::iterator it;
-
-	for (it = bombList.begin(); it != bombList.end(); it++)
-	{
-		it->move(DROP_SPEED);
-	}
-}
-
-void BombMgr::addBomb(Vector2f pos)
-{
-	bombList.push_back(Projectile(pos, bombTexture));
-}
-
-void BombMgr::deleteBomb(int index)
-{
-	list<Projectile>::iterator it;
-
-	it = bombList.begin();
-	advance(it, index);
-	bombList.erase(it);
+	return outOfBounds;
 }

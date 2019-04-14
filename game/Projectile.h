@@ -6,11 +6,11 @@ using namespace sf;
 class Projectile
 {
 private:
-	Vector2f position;	//The location of the projectile
 	Sprite projectile;	//Image for the projectile
 public:
-	Projectile(Vector2f pos, Texture &img);
-	void move(float dist);
+	Projectile(Vector2f pos, Sprite img);
 	void draw(RenderWindow &win);
+	void move(float dist);
 	Sprite getSprite() const;
+	Vector2f getPosition() const;
 };
