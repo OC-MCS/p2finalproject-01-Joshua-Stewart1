@@ -63,6 +63,16 @@ void ProjectileMgr::setVelocity(float vel)
 	velocity = vel;
 }
 
+void ProjectileMgr::clearList()
+{
+	list<Projectile>::iterator it;
+
+	for (it = projectileList.begin(); it != projectileList.end(); )
+	{
+		it = projectileList.erase(it);
+	}
+}
+
 list<Projectile> * ProjectileMgr::getList()
 {
 	return &projectileList;

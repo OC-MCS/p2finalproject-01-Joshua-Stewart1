@@ -1,6 +1,7 @@
 #include "Enemy.h"
 
-const int STEP_DISTANCE = 3;
+const int STEP_DISTANCE = 3;		//The distance the aliens move each time
+const float ENEMY_START_Y = 10;		//The starting height for the enemies
 
 Enemy::Enemy(Vector2f pos, Sprite spr)
 {
@@ -16,6 +17,11 @@ void Enemy::draw(RenderWindow &win)
 void Enemy::descend()
 {
 	alien.move(0, STEP_DISTANCE);
+}
+
+void Enemy::reset()
+{
+	alien.setPosition(alien.getPosition().x, ENEMY_START_Y);
 }
 
 bool Enemy::checkHit(MissileMgr &missileList)
@@ -41,5 +47,10 @@ bool Enemy::checkHit(MissileMgr &missileList)
 
 void Enemy::dropBomb(BombMgr &bombList)
 {
-	bombList.addProjectile(alien.getPosition());
+	bombList.addProjectile(Vector2f(alien.getPosition().x + 10, alien.getPosition().y));
+}
+
+Vector2f Enemy::getPosition() const
+{
+	return alien.getPosition();
 }

@@ -14,5 +14,7 @@ public:
 	void draw(RenderWindow &win);
 	void move();
 	void shootMissile(MissileMgr &missileList);
+	void setPosition(Vector2f pos);
 	bool checkHit(BombMgr &bombList);
+	Vector2f getPosition() const;
 };

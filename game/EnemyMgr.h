@@ -3,6 +3,7 @@
 #include <list>
 using namespace std;
 #include "Enemy.h"
+#include "Ship.h"
 
 class EnemyMgr
 {
@@ -13,7 +14,11 @@ public:
 	EnemyMgr(Texture &img);
 	void draw(RenderWindow &win);
 	void descendAll();
-	void checkHits(MissileMgr &missileList);
+	void resetPositions();
+	bool checkHits(MissileMgr &missileList);
+	bool checkPosition(Ship &ship);
 	void addEnemy(Vector2f pos);
-	
+	void dropBomb(BombMgr &bombList);
+	void clearList();
+	int getEnemyCount() const;
 };

@@ -27,6 +27,11 @@ void Ship::move()
 	}
 }
 
+void Ship::setPosition(Vector2f pos)
+{
+	ship.setPosition(pos);
+}
+
 bool Ship::checkHit(BombMgr &bombList)
 {
 	list<Projectile>::iterator it;
@@ -37,7 +42,7 @@ bool Ship::checkHit(BombMgr &bombList)
 	{
 		if (ship.getGlobalBounds().intersects(it->getSprite().getGlobalBounds()))
 		{
-			ptr->erase(it);
+			it = ptr->erase(it);
 			isHit = true;
 		}
 		else
@@ -51,4 +56,9 @@ bool Ship::checkHit(BombMgr &bombList)
 void Ship::shootMissile(MissileMgr &missileList)
 {
 	missileList.addProjectile(Vector2f(ship.getPosition().x + 12, ship.getPosition().y));
+}
+
+Vector2f Ship::getPosition() const
+{
+	return ship.getPosition();
 }

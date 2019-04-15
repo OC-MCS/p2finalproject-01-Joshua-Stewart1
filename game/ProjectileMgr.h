@@ -19,5 +19,6 @@ public:
 	void clearProjectiles();
 	void deleteProjectile(int index);
 	void setVelocity(float vel);
+	void clearList();
 	list<Projectile> * getList();
 };

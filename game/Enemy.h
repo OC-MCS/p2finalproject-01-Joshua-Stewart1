@@ -13,6 +13,8 @@ public:
 	Enemy(Vector2f pos, Sprite spr);
 	void draw(RenderWindow &win);
 	void descend();
+	void reset();
 	bool checkHit(MissileMgr &missileList);
 	void dropBomb(BombMgr &bombList);
+	Vector2f getPosition() const;
 };
