@@ -13,12 +13,13 @@ private:
 public:
 	EnemyMgr(Texture &img);
 	void draw(RenderWindow &win);
-	void descendAll();
-	void resetPositions();
-	bool checkHits(MissileMgr &missileList);
-	bool checkPosition(Ship &ship);
 	void addEnemy(Vector2f pos);
 	void dropBomb(BombMgr &bombList);
+	void descendAll();
+	void resetPositions();
 	void clearList();
+	bool checkHits(MissileMgr &missileList);
+	bool checkPosition(Ship &ship);
+	
 	int getEnemyCount() const;
 };

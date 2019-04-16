@@ -12,9 +12,9 @@ private:
 public:
 	Ship(Vector2f pos, Texture &img);
 	void draw(RenderWindow &win);
-	void move();
 	void shootMissile(MissileMgr &missileList);
 	void setPosition(Vector2f pos);
+	void move();
 	bool checkHit(BombMgr &bombList);
 	Vector2f getPosition() const;
 };

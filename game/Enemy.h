@@ -12,9 +12,9 @@ private:
 public:
 	Enemy(Vector2f pos, Sprite spr);
 	void draw(RenderWindow &win);
+	void dropBomb(BombMgr &bombList);
 	void descend();
 	void reset();
 	bool checkHit(MissileMgr &missileList);
-	void dropBomb(BombMgr &bombList);
 	Vector2f getPosition() const;
 };

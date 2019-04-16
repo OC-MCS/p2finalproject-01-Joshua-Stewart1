@@ -2,12 +2,20 @@
 using namespace std;
 #include "ProjectileMgr.h"
 
+// Constructor
+// parameters: 
+//   img: the texture to use for the projectile sprites
+// return type: none
 ProjectileMgr::ProjectileMgr(Texture &img)
 {
 	velocity = 0;
 	projectile.setTexture(img);
 }
 
+// draw: draws all of the projectiles onto the window
+// parameters: 
+//   win: the window to draw to
+// return type: void
 void ProjectileMgr::draw(RenderWindow &win)
 {
 	list<Projectile>::iterator it;
@@ -18,6 +26,9 @@ void ProjectileMgr::draw(RenderWindow &win)
 	}
 }
 
+// moveProjectiles: moves all of the projectiles one increment
+// parameters: none
+// return type: void
 void ProjectileMgr::moveProjectiles()
 {
 	list<Projectile>::iterator it;
@@ -28,11 +39,18 @@ void ProjectileMgr::moveProjectiles()
 	}
 }
 
+// addProjectile: adds a projectile to the list
+// parameters: 
+//   pos: the position to spawn the projectile at
+// return type: void
 void ProjectileMgr::addProjectile(Vector2f pos)
 {
 	projectileList.push_back(Projectile(pos, projectile));
 }
 
+// clearProjectiles: clear all of the projectiles offscreen
+// parameters: none
+// return type: void
 void ProjectileMgr::clearProjectiles()
 {
 	list<Projectile>::iterator it;
@@ -50,6 +68,10 @@ void ProjectileMgr::clearProjectiles()
 	}
 }
 
+// deleteProjectile: removes a projectile from the list
+// parameters: 
+//   index: the index of the projectile to remove
+// return type: void
 void ProjectileMgr::deleteProjectile(int index)
 {
 	list<Projectile>::iterator it;
@@ -58,11 +80,18 @@ void ProjectileMgr::deleteProjectile(int index)
 	projectileList.erase(it);
 }
 
+// setVelocity: change the speed of the projectiles
+// parameters: 
+//   vel: the new speed for velocity to be set to
+// return type: void
 void ProjectileMgr::setVelocity(float vel)
 {
 	velocity = vel;
 }
 
+// clearList: removes all projectiles from the list
+// parameters: none
+// return type: void
 void ProjectileMgr::clearList()
 {
 	list<Projectile>::iterator it;
@@ -73,6 +102,9 @@ void ProjectileMgr::clearList()
 	}
 }
 
+// getList: get the list of projectiles
+// parameters: none
+// return type: list<Projectile>*
 list<Projectile> * ProjectileMgr::getList()
 {
 	return &projectileList;

@@ -2,12 +2,6 @@
 using namespace std;
 #include <SFML/Graphics.hpp>
 using namespace sf; 
-
-#include "MenuUI.h"
-#include "Ship.h"
-#include "MissileMgr.h"
-#include "BombMgr.h"
-#include "EnemyMgr.h"
 #include "GameMgr.h"
 
 //============================================================
@@ -50,7 +44,7 @@ int main()
 		cout << "Unable to load enemy texture!" << endl;
 		exit(EXIT_FAILURE);
 	}
-	Texture strongEnemyTexture;	//The texture for the enemies
+	Texture strongEnemyTexture;	//The texture for the enemies in round two
 	if (!strongEnemyTexture.loadFromFile("CustomAlienSprite2.png"))
 	{
 		cout << "Unable to load big enemy texture!" << endl;
@@ -80,32 +74,32 @@ int main()
 
 	//Initialize Background Sprite
 
-	Sprite background;
+	Sprite background;						//The sprite for the background of the game
 	background.setTexture(starsTexture);
 	background.setScale(1.5, 1.5);
 
 	//Initialize Game Objects
 
-	MenuUI menuUI(font);
-	Ship ship (Vector2f(SHIP_X,SHIP_Y), shipTexture);
-	BombMgr bombMgr(bombTexture);
-	MissileMgr missileMgr(missileTexture);
-	EnemyMgr enemyMgr(enemyTexture);
-	GameMgr spaceInvaders;
+	MenuUI menuUI(font);									//The menu interfacing object
+	Ship ship (Vector2f(SHIP_X,SHIP_Y), shipTexture);		//The ship object
+	BombMgr bombMgr(bombTexture);							//The manager for bomb objects
+	MissileMgr missileMgr(missileTexture);					//The manager for missile objects
+	EnemyMgr enemyMgr(enemyTexture);						//The manager for enemy objects
+	GameMgr spaceInvaders;									//The manager for game functions
 
 	//Initialize Timers
 
-	Clock bombTimer;
-	Clock shootTimer;
-	Clock descendTimer;
+	Clock bombTimer;		//The timer for determining when to drop bombs
+	Clock shootTimer;		//The timer for determining when the player can shoot again
+	Clock descendTimer;		//The timer for determining when to move the enemies down
 
-	double descentDelay = 0.2;
+	double descentDelay = 0.2;	//The amount of time between each descent
 
 	//Randomize Bomb Dropping
 
 	srand(time(0));
-	int bombDelay = 4;
-	int delay = (rand() % bombDelay) + 1;
+	int bombDelay = 4;						//The maximum value for the bomb drop delay
+	int delay = (rand() % bombDelay) + 1;	//The number of seconds to delay dropping the bomb
 
 	//Run Game
 
@@ -115,6 +109,8 @@ int main()
 
 		while (window.pollEvent(event))
 		{
+			//Check Close
+
 			if (event.type == Event::Closed)
 				window.close();
 			else if (event.type == Event::KeyPressed)
@@ -130,8 +126,8 @@ int main()
 			else if (event.type == Event::MouseButtonReleased)
 			{
 				//Check Button Click
-				
-				Vector2f mousePos = window.mapPixelToCoords(Mouse::getPosition(window));
+
+				Vector2f mousePos = window.mapPixelToCoords(Mouse::getPosition(window));	//The position of the mouse
 				if(menuUI.checkStart(mousePos))
 				{
 					spaceInvaders.startGame(menuUI, enemyMgr, bombMgr, missileMgr, ship,
